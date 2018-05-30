@@ -6,3 +6,6 @@ export const LOGIN_USER = 'login_user';
 export const REGISTER_USER = 'register_user';
 export const REGISTER_USER_SUCCESS = 'register_user_success';
 export const REGISTER_USER_FAILED = 'register_user_failed';
+export const NAME_CHANGED = 'name_changed';
+export const TYPE_CHANGED = 'type_changed';
+export const PROFILE_CREATED = 'profile_created';

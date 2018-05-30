@@ -7,7 +7,10 @@ import {
   LOGIN_USER,
   REGISTER_USER,
   REGISTER_USER_FAILED,
-  REGISTER_USER_SUCCESS
+  REGISTER_USER_SUCCESS,
+  NAME_CHANGED,
+  TYPE_CHANGED,
+  PROFILE_CREATED
 
 } from './types';
 
@@ -42,6 +45,33 @@ export const registerUser = ({ email, password }) => {
       .then(user => registerUserSuccess(dispatch, user))
       .catch(() => registerUserFailed());
   };
+};
+
+export const nameChanged = (text) => {
+  return {
+    type: NAME_CHANGED,
+    payload: text
+  };
+};
+
+export const typeChanged = (text) => {
+  return {
+    type: TYPE_CHANGED,
+    payload: text
+  };
+};
+
+export const createProfile = ({ name, type }) => {
+  const { currentUser } = firebase.auth();
+  return () => {
+    firebase.database().ref(`/users/${currentUser.uid}`)
+      .set({ name, type })
+      .then(() => profileCreated());
+  };
+};
+
+const profileCreated = (dispatch) => {
+  dispatch({ type: PROFILE_CREATED });
 };
 
 const registerUserFailed = (dispatch) => {

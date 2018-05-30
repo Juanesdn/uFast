@@ -15,7 +15,7 @@ const Auth = createStackNavigator({
         navigationOptions: {
             title: "Sign Up"
         }
-    }
+    },
 });
 
 

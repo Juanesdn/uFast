@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StatusBar, Keyboard } from 'react-native';
+import { Keyboard } from 'react-native';
 import { 
     Container, 
     Content, 
@@ -9,13 +9,9 @@ import {
     Label, 
     Button, 
     Text, 
-    Header,
-    Body,
-    Title,
     Icon,
     Spinner,
     Toast,
-    Root
 } from 'native-base';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
@@ -34,26 +30,27 @@ class LoginForm extends Component {
     this.props.navigation.navigate('Register');
   }
 
+  onButtonPress() {
+    const { email, password } = this.props;
+    Keyboard.dismiss();
+    this.props.loginUser({ email, password });
+    this.renderError();
+  }
+
   renderError() {
     if (this.props.showError) {
       return (
             Toast.show({
-              text: "Authentication Error!",
-              buttonText: "Okay",
-              type: "danger",
+              text: 'Authentication Error!',
+              buttonText: 'Okay',
+              type: 'danger',
               duration: 3000
             })
       );
     }
   }
 
-  onButtonPress() {
-    const { email, password } = this.props;
-    {Keyboard.dismiss()}
-    this.props.loginUser({ email, password });
-    {this.renderError()}
-  }
-
+  
   renderButton() {
     if (this.props.loading) {
       return <Spinner />;
@@ -66,7 +63,7 @@ class LoginForm extends Component {
         success
         style={styles.buttonStyle}
         onPress={this.onButtonPress.bind(this)}
-        >
+      >
         <Text>Login</Text>
       </Button>
     );

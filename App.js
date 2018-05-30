@@ -33,8 +33,7 @@ class App extends Component {
       storageBucket: 'ufast-5d939.appspot.com',
       messagingSenderId: '117931070291'
     });
-    this.setState({ isReady: true });
-    
+    this.setState({ isReady: true }); 
   }
 
 
