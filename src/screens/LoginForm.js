@@ -20,10 +20,8 @@ import { emailChanged, passwordChanged, loginUser } from '../actions';
 class LoginForm extends Component {
 
   componentWillMount() {
-    const { navigate } = this.props.navigation;
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        navigate('Storage');
       }
     });
   }
@@ -46,6 +44,7 @@ class LoginForm extends Component {
     const { email, password } = this.props;
     Keyboard.dismiss();
     this.props.loginUser({ email, password });
+    this.props.navigation.navigate('Storage');
     this.renderError();
   }
 

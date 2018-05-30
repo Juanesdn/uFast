@@ -55,7 +55,7 @@ class RegisterForm extends Component {
         this.renderError();
     }
     
-    createProfile() {
+    crearPerfil() {
         const { name, type } = this.props;
         const { navigate } = this.props.navigation;
         if (name !== '' && type !== '') {
@@ -101,7 +101,7 @@ class RegisterForm extends Component {
                 rounded  
                 block
                 style={styles.buttonStyle}
-                onPress={this.createProfile.bind(this)}
+                onPress={this.crearPerfil.bind(this)}
                 >
                 <Text>Siguiente</Text>
                 </Button>

@@ -7,7 +7,6 @@ import {
     CheckBox,
     ListItem
 } from 'native-base';
-import { connect } from 'react-redux';
 
 class OrderInProcess extends Component {
     render() {
