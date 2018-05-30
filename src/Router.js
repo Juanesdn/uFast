@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation';
 import LoginForm from './screens/LoginForm';
 import RegisterForm from './screens/RegisterForm';
 import ClientProfile from './screens/ClientProfile';
+import OrderInProcess from './screens/OrderInProcess';
 
 const Auth = createStackNavigator({
     Login: {
@@ -21,6 +22,13 @@ const Auth = createStackNavigator({
         screen: ClientProfile,
         navigationOptions: {
             title: 'Inventory',
+            headerLeft: null
+        }
+    },
+    inProcess: {
+        screen: OrderInProcess,
+        navigationOptions: {
+            title: 'Order In Process',
             headerLeft: null
         }
     }

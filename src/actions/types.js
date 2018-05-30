@@ -12,3 +12,6 @@ export const PROFILE_CREATED = 'profile_created';
 export const USER_LOGOUT = 'user_logout';
 
 export const PRODUCTS_FETCH_SUCCESS = 'products_fetch_success';
+export const PRODUCT_SELECTED = 'product_selected';
+export const ORDER_DONE = 'order_done';
+export const UBICATION_CHANGED = 'ubication_changed';
