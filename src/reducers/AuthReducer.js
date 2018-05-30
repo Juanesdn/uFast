@@ -9,7 +9,8 @@ import {
     REGISTER_USER_SUCCESS,
     NAME_CHANGED,
     TYPE_CHANGED,
-    PROFILE_CREATED
+    PROFILE_CREATED,
+    USER_LOGOUT
 } from '../actions/types';
 
 const INITIAL_STATE = { 
@@ -26,8 +27,10 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case USER_LOGOUT:
+            return { ...state, ...INITIAL_STATE };
         case PROFILE_CREATED:
-            return { ...state, ...INITIAL_STATE, loggedIn: true };
+            return { ...state, ...INITIAL_STATE };
         case TYPE_CHANGED:
             return { ...state, type: action.payload };
         case NAME_CHANGED:

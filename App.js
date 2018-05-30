@@ -3,7 +3,7 @@ import { Root } from 'native-base';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
-import Expo from "expo";
+import Expo from 'expo';
 import ReduxThunk from 'redux-thunk';
 import reducers from './src/reducers';
 import Auth from './src/Router';
@@ -16,13 +16,12 @@ class App extends Component {
       isReady: false
     };
   }
-  
-  async componentWillMount() {
 
+  async componentWillMount() {
     await Expo.Font.loadAsync({
-      Roboto: require("native-base/Fonts/Roboto.ttf"),
-      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-      Ionicons: require("native-base/Fonts/Ionicons.ttf")
+      Roboto: require('native-base/Fonts/Roboto.ttf'),
+      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+      Ionicons: require('native-base/Fonts/Ionicons.ttf')
     });
 
     firebase.initializeApp({
@@ -36,11 +35,10 @@ class App extends Component {
     this.setState({ isReady: true }); 
   }
 
-
   render() {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
-    if (!this.state.isReady){
+    if (!this.state.isReady) {
       return <Expo.AppLoading />;
     }
     return (

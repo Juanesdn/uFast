@@ -57,8 +57,10 @@ class RegisterForm extends Component {
     
     createProfile() {
         const { name, type } = this.props;
+        const { navigate } = this.props.navigation;
         if (name !== '' && type !== '') {
             this.props.createProfile({ name, type });
+            navigate('Login');
         }
     }
 
@@ -109,63 +111,59 @@ class RegisterForm extends Component {
 
 
     render() {
-        if (this.props.loggedIn) {
-            this.props.navigation.navigate('Login');
-        } else {
-            return (
-                <Container>
-                  <Content>
-                      <Form>
-                          <Item floatingLabel>
-                              <Label> Nombre </Label>
-                              <Input 
-                                  autoCapitalize='none'
-                                  onChangeText={this.onNameChange.bind(this)}
-                                  value={this.props.name}
-                              />
-                           </Item>
-                          <Item floatingLabel>
-                              <Icon active name='contact' />
-                              <Label> Email </Label>
-                              <Input
-                                  autoCapitalize='none'
-                                  onChangeText={this.onEmailChange.bind(this)}
-                                  value={this.props.email}
-                              />
-                          </Item>
-                          <Item floatingLabel>
-                              <Icon active name='lock' />
-                              <Label> Password </Label>
-                              <Input
-                              secureTextEntry
-                              onChangeText={this.onPasswordChange.bind(this)}
-                              value={this.props.password}
-                              />
-                          </Item>
-                          <ListItem>
-                              <Text>Cliente</Text>
-                              <Right>
-                                  <Radio
-                                      onPress={this.onClientPress.bind(this)}  
-                                      selected={this.props.type === 'Cliente'}
-                                  />
-                              </Right>
-                          </ListItem>
-                          <ListItem>
-                              <Text>Domiciliario</Text>
-                              <Right>
-                                  <Radio
-                                      onPress={this.onDomiciliarioPress.bind(this)}
-                                      selected={this.props.type === 'Domiciliario'}
-                                  />
-                              </Right>
-                          </ListItem>
-                          {this.renderButton()}
-                      </Form>
-                  </Content>
-                </Container>
-            );
-        }     
+        return (
+            <Container>
+                <Content>
+                    <Form>
+                        <Item floatingLabel>
+                            <Label> Nombre </Label>
+                            <Input 
+                                autoCapitalize='none'
+                                onChangeText={this.onNameChange.bind(this)}
+                                value={this.props.name}
+                            />
+                        </Item>
+                        <Item floatingLabel>
+                            <Icon active name='contact' />
+                            <Label> Email </Label>
+                            <Input
+                                autoCapitalize='none'
+                                onChangeText={this.onEmailChange.bind(this)}
+                                value={this.props.email}
+                            />
+                        </Item>
+                        <Item floatingLabel>
+                            <Icon active name='lock' />
+                            <Label> Password </Label>
+                            <Input
+                            secureTextEntry
+                            onChangeText={this.onPasswordChange.bind(this)}
+                            value={this.props.password}
+                            />
+                        </Item>
+                        <ListItem>
+                            <Text>Cliente</Text>
+                            <Right>
+                                <Radio
+                                    onPress={this.onClientPress.bind(this)}  
+                                    selected={this.props.type === 'Cliente'}
+                                />
+                            </Right>
+                        </ListItem>
+                        <ListItem>
+                            <Text>Domiciliario</Text>
+                            <Right>
+                                <Radio
+                                    onPress={this.onDomiciliarioPress.bind(this)}
+                                    selected={this.props.type === 'Domiciliario'}
+                                />
+                            </Right>
+                        </ListItem>
+                        {this.renderButton()}
+                    </Form>
+                </Content>
+            </Container>
+        );
     }
  }
     

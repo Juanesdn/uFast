@@ -9,3 +9,6 @@ export const REGISTER_USER_FAILED = 'register_user_failed';
 export const NAME_CHANGED = 'name_changed';
 export const TYPE_CHANGED = 'type_changed';
 export const PROFILE_CREATED = 'profile_created';
+export const USER_LOGOUT = 'user_logout';
+
+export const PRODUCTS_FETCH_SUCCESS = 'products_fetch_success';

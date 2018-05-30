@@ -1,3 +1,4 @@
+import firebase from 'firebase';
 import React, { Component } from 'react';
 import { Keyboard } from 'react-native';
 import { 
@@ -17,6 +18,17 @@ import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 
 class LoginForm extends Component {
+
+  componentWillMount() {
+    const { navigate } = this.props.navigation;
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        navigate('Storage');
+      }
+    });
+  }
+
+
   onEmailChange(text) {
     this.props.emailChanged(text);
   }
@@ -57,15 +69,25 @@ class LoginForm extends Component {
     }
 
     return (
-      <Button
-        rounded  
-        block
-        success
+      <Content>
+        <Button
+          rounded  
+          block
+          success
+          style={styles.buttonStyle}
+          onPress={this.onButtonPress.bind(this)}
+        >
+          <Text>Login</Text>
+        </Button>
+        <Button
+        rounded 
+        block 
         style={styles.buttonStyle}
-        onPress={this.onButtonPress.bind(this)}
-      >
-        <Text>Login</Text>
-      </Button>
+        onPress={this.onRegisterButtonPress.bind(this)}
+        >
+            <Text>Sign Up</Text>
+        </Button>
+      </Content>
     );
   }
 
@@ -94,14 +116,6 @@ class LoginForm extends Component {
                     />
                 </Item>
                 {this.renderButton()}
-                <Button
-                    rounded 
-                    block 
-                    style={styles.buttonStyle}
-                    onPress={this.onRegisterButtonPress.bind(this)}
-                >
-                    <Text>Sign Up</Text>
-                </Button>
             </Form>
         </Content>
       </Container>
@@ -124,8 +138,8 @@ const styles = {
 };
 
 const mapStateToProps = ({ auth }) => {
-  const { email, password, showError, loading } = auth;
-  return { email, password, showError, loading };
+  const { email, password, showError, loading, loggedIn } = auth;
+  return { email, password, showError, loading, loggedIn };
 };
 
 export default connect(mapStateToProps, {
